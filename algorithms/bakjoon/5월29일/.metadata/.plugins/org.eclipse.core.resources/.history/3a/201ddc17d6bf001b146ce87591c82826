@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class _2231 {
+	public static void main(String args[]) {
+		Scanner s = new Scanner(System.in);
+		int n = s.nextInt();
+		int min, max;
+		int tmp1, tmp2 = 0;
+		int r; // 力老 场何盒 唱赣瘤
+		if (n < 1 || n > 1000000)
+			return;
+		tmp1 = n;
+		while(true) {
+			if(tmp1 == 0) {
+				r = tmp2;
+				break;
+			}
+			tmp2 = tmp1;
+			tmp1 /= 10;
+		}
+		System.out.println(r);
+	}
+}

@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class _2231 {
+	public static void main(String args[]) {
+		Scanner s = new Scanner(System.in);
+		int n = s.nextInt();
+		int min, max;
+		int r; // 입력값에서 제일 끝 나머지를 뺀 변수
+		if (n < 1 || n > 1000000)
+			return;
+		r = n - (n%10);
+		System.out.println(r);
+	}
+}

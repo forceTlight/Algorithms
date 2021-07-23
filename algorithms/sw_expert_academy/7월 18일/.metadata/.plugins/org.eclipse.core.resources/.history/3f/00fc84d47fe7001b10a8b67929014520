@@ -1,0 +1,62 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Solution {
+	public static void main(String args[]) throws NumberFormatException, IOException {
+		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+		int c = Integer.parseInt(bf.readLine());
+		int cnt = 0;
+		while (cnt < c) {
+			cnt++;
+			StringTokenizer st = new StringTokenizer(bf.readLine());
+			int prize = Integer.parseInt(st.nextToken());
+			int ex = Integer.parseInt(st.nextToken());
+
+			int length = (int) (Math.log10(prize) + 1);
+			int[] num = new int[length];
+			int tmp = (int) Math.pow(10, (length - 1));
+			int i = 0;
+			// 자릿수 구하기
+			while (tmp > 0) {
+				num[i] = (prize / tmp);
+				prize -= num[i] * tmp;
+				tmp /= 10;
+				i++;
+			}
+			// process
+			getMaxPrize(num, num.length, 0, 1, 0);
+		}
+	}
+	public static void getMaxPrize(int arr[], int digit, int i, int j, int max) {
+		if(i == digit-2  && j == digit) {
+			System.out.println(max);
+			return;
+		}
+		if(j == digit-1) {
+			getMaxPrize(arr, digit, i+1, i+2, max);
+			System.out.println(max);
+			return;
+		}
+		// swap
+		int tmp[] = arr;
+		int temp = tmp[i];
+		tmp[i] = tmp[j];
+		tmp[j] = temp;
+		
+		int num1 = 0, num2 = 0;
+		for(int k = 0, l = digit ; k < digit; k++,l--) {
+			num1 += arr[k] * Math.pow(10, l-1);
+			num2 += tmp[k] * Math.pow(10, l-1);
+		}
+		if(num2 >= num1 && num2 >= max) {
+			arr = tmp;
+			max = num2;
+			getMaxPrize(arr, digit, i, j+1, max);
+		}else if(num1 >= max){
+			max = num1;
+			getMaxPrize(arr, digit, i, j+1, max);
+		}
+	}
+}

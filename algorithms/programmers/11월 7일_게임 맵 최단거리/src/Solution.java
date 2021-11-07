@@ -66,6 +66,6 @@ public class Solution {
 		}
 		int answer = maps[n-1][m-1];
 		if(answer == 1) answer = -1;
-		return maps[n -1][m -1];
+		return answer;
 	}
 }

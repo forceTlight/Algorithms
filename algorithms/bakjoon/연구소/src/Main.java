@@ -36,7 +36,6 @@ public class Main {
 
     public static void main(String args[]) throws IOException {
         String[] inputs;
-//        int map[][];
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         inputs = bf.readLine().split(" ");
         n = Integer.parseInt(inputs[0]);
@@ -52,7 +51,7 @@ public class Main {
         dfs(0);
         System.out.println(max);
     }
-
+    // 백트래킹
     static void dfs(int cnt) {
         if (cnt == 3) {
             bfs();
@@ -61,10 +60,8 @@ public class Main {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (map[i][j] != 1 && map[i][j] != 2 && promising(i, j)) {
-//                    visit[i][j] = true;
                     map[i][j] = 1;
                     dfs(cnt + 1);
-//                    visit[i][j] = false;
                     map[i][j] = 0;
                 }
             }
@@ -80,25 +77,26 @@ public class Main {
             x = a + dx[i];
             y = b + dy[i];
             if (x >= 0 && x < n && y >= 0 && y < m) {
-                if (map[x][y] == 1 || map[x][y] == 2)
+                if (map[x][y] == 1 || map[x][y] == 2){
                     check = true;
-                    continue;
+                    break;
+                }
             }
             // 대각선
             for(int j = 0; j < 4; j++){
                 x = a + dxdy[j][0];
                 y = b + dxdy[j][1];
                 if (x >= 0 && x < n && y >= 0 && y < m) {
-                    if (map[x][y] == 1 || map[x][y] == 2)
+                    if (map[x][y] == 1 || map[x][y] == 2){
                         check = true;
-                    continue;
+                        break;
+                    }
                 }
             }
-
         }
         return check;
     }
-
+    // 바이러스 감염 bfs로 구현
     static void bfs() {
         int[][] map_ = map;
         int cnt = 0;

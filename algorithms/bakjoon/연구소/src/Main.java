@@ -27,15 +27,16 @@ public class Main {
     static int[] dx = {-1, 1, 0, 0};
     static int[] dy = {0, 0, -1, 1};
 
-    static int[][] dxdy = {{-1,1}, {1,1}, {-1,-1}, {-1,1}};
+    static int[][] dxdy = {{-1,1}, {1,1}, {-1,-1}, {1,-1}};
     static boolean visit[][];
+    static int[][] map;
     static int n;
     static int m;
     static int max = Integer.MIN_VALUE;
 
     public static void main(String args[]) throws IOException {
         String[] inputs;
-        int map[][];
+//        int map[][];
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         inputs = bf.readLine().split(" ");
         n = Integer.parseInt(inputs[0]);
@@ -48,22 +49,22 @@ public class Main {
                 map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        dfs(0, map);
+        dfs(0);
         System.out.println(max);
     }
 
-    static void dfs(int cnt, int map[][]) {
+    static void dfs(int cnt) {
         if (cnt == 3) {
-            bfs(map);
+            bfs();
             return;
         }
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (visit[i][j] != true && map[i][j] != 2 && promising(i, j, map)) {
-                    visit[i][j] = true;
+                if (map[i][j] != 1 && map[i][j] != 2 && promising(i, j)) {
+//                    visit[i][j] = true;
                     map[i][j] = 1;
-                    dfs(cnt + 1, map);
-                    visit[i][j] = false;
+                    dfs(cnt + 1);
+//                    visit[i][j] = false;
                     map[i][j] = 0;
                 }
             }
@@ -71,7 +72,7 @@ public class Main {
     }
 
     // 주변에 벽이 1개이상 있거나, 바이러스가 있을 시 유망하다고 판단
-    static boolean promising(int a, int b, int[][] map) {
+    static boolean promising(int a, int b) {
         int x, y;
         boolean check = false;
         // 상하좌우
@@ -98,7 +99,8 @@ public class Main {
         return check;
     }
 
-    static void bfs(int[][] map) {
+    static void bfs() {
+        int[][] map_ = map;
         int cnt = 0;
         int[][] tmp_map = new int[n][m];
         for(int i = 0; i < n; i++){

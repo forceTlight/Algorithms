@@ -28,7 +28,6 @@ public class Main {
     static int[] dy = {0, 0, -1, 1};
 
     static int[][] dxdy = {{-1,1}, {1,1}, {-1,-1}, {1,-1}};
-    static boolean visit[][];
     static int[][] map;
     static int n;
     static int m;
@@ -41,7 +40,6 @@ public class Main {
         n = Integer.parseInt(inputs[0]);
         m = Integer.parseInt(inputs[1]);
         map = new int[n][m];
-        visit = new boolean[n][m];
         for (int i = 0; i < n; i++) {
             StringTokenizer st = new StringTokenizer(bf.readLine(), " ");
             for (int j = 0; j < m; j++) {

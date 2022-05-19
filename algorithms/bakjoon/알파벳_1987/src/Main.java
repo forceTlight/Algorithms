@@ -25,6 +25,7 @@ class Node{
 public class Main {
     static int n, m;
     static char map[][];
+    static int visit[][];
     //static int[][] map_cnt;
     static int[] dx = {-1, 1, 0 ,0};
     static int[] dy = {0, 0, -1, 1};
@@ -34,7 +35,7 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
         map = new char[n][m];
-        //map_cnt = new int[n][m];
+        visit = new int[n][m];
         for(int i = 0; i < n; i++){
             st = new StringTokenizer(bf.readLine(), " ");
             String input = st.nextToken();
@@ -60,9 +61,10 @@ public class Main {
                 int y = b + dy[i];
                 if (x >= 0 && x < n && y >= 0 && y < m) {
                     char tmp_c = map[x][y];
-                    if (!list.contains(tmp_c)) {
+                    if (!list.contains(tmp_c) && visit[x][y] != 1) {
                         list.add(tmp_c);
                         q.offer(new Node(x, y, list));
+                        visit[x][y] = 1;
                         if(max > list.size())
                             max = list.size();
                     }

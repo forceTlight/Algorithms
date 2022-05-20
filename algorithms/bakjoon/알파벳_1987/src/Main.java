@@ -2,42 +2,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-
-class Node{
-    int n = Main.n; int m = Main.m;
-    int idx;
-    int distance;
-    int visit[][] = new int[n][m];
-    ArrayList<Character> c_list;
-    public Node(int idx, int distance, ArrayList<Character> c_list, int[][] visit){
-        this.idx = idx;
-        this.distance = distance;
-        this.c_list = c_list;
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < m; j++){
-                this.visit[i][j] = visit[i][j];
-            }
-        }
-    }
-    public int getIdx(){
-        return idx;
-    }
-    public int getDistance(){
-        return distance;
-    }
-    public ArrayList<Character> getList(){
-        return c_list;
-    }
-    public int[][] getVisit(){
-        return visit;
-    }
-}
-
 public class Main {
     static int n, m;
+    static int max = 0;
+    static int cnt = 0;
+    static ArrayList<Character> list = new ArrayList<>();
     static char map[][];
-    //static int[][] map_cnt;
-    static int[] dx = {-1, 1, 0 ,0};
+    static boolean visit[][];
+    static int[] dx = {-1, 1, 0, 0};
     static int[] dy = {0, 0, -1, 1};
     public static void main(String args[]) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
@@ -45,6 +17,7 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
         map = new char[n][m];
+        visit = new boolean[n][m];
         for(int i = 0; i < n; i++){
             st = new StringTokenizer(bf.readLine(), " ");
             String input = st.nextToken();
@@ -52,39 +25,25 @@ public class Main {
                 map[i][j] = input.charAt(j);
             }
         }
-        System.out.println(bfs());
+        dfs(0, 0, new ArrayList<>());
+        System.out.println(max);
     }
-    public static int bfs() {
-        int max = 1;
-        Queue<Node> q = new LinkedList<>();
-        ArrayList<Character> c_list = new ArrayList<>();
-        c_list.add(map[0][0]);
-        int[][] visit = new int[n][m];
-        q.offer(new Node(0, 0, c_list, visit));
-        while (!q.isEmpty()) {
-            Node node = q.poll();
-            int a = node.getIdx();
-            int b = node.getDistance();
-            visit = node.getVisit();
-            visit[a][b] = 1;
-            for (int i = 0; i < 4; i++) {
-                ArrayList<Character> list = new ArrayList<>();
-                for(char c : node.getList()){
-                    list.add(c);
-                }
-                int x = a + dx[i];
-                int y = b + dy[i];
-                if (x >= 0 && x < n && y >= 0 && y < m) {
-                    char tmp_c = map[x][y];
-                    if (!list.contains(tmp_c) && visit[x][y] != 1) {
-                        list.add(tmp_c);
-                        q.offer(new Node(x, y, list, visit));
-                        if(max < list.size())
-                            max = list.size();
-                    }
+    public static void dfs(int x, int y, ArrayList<Character> list){
+        visit[x][y] = true;
+        char ch = map[x][y];
+        list.add(ch);
+        for(int i = 0; i < 4; i++){
+            int a = x + dx[i];
+            int b = y + dy[i];
+            if(a >= 0 && a < n && b >= 0 && b < m){
+                char c = map[a][b];
+                if(!list.contains(c) && !visit[a][b]){
+                    dfs(a, b, list);
                 }
             }
         }
-        return max;
+        max = Math.max(max, list.size());
+        list.remove(Character.valueOf(ch));
+        visit[x][y] = false;
     }
 }

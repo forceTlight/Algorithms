@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 
 class Node{
     int a, b, size, distance = 0;
+    int cnt = 0;
     Node(int a, int b){
         this.a = a;
         this.b = b;
@@ -28,6 +29,13 @@ class Node{
     }
     void setB(int b){
         this.b = b;
+    }
+    void eatShark(){
+        cnt++;
+        if(cnt == size){
+            size++;
+            cnt = 0;
+        }
     }
     void setDistance(int distance){
         this.distance = distance;
@@ -58,9 +66,10 @@ public class Main {
                 }
             }
         }
-        bfs(a, b);
+        int size = bfs(a, b);
+        System.out.println(size);
     }
-    static void bfs(int aa, int bb){
+    static int bfs(int aa, int bb){
         Node shark = new Node(aa, bb, 2);
         Queue<Node> q = new LinkedList<>();
         ArrayList<Node> node_list = new ArrayList<>();
@@ -70,7 +79,7 @@ public class Main {
             int size = shark.size;
             for (int i = 0; i < n; i++) { // 상어보다 작은 사이즈 넣기
                 for (int j = 0; j < n; j++) {
-                    if(arr[i][j] < size && (i!=aa || j!=bb)){
+                    if(arr[i][j] != 0 && arr[i][j] < size && (i!=shark.getA() || j!=shark.getB())){
                         node_list.add(new Node(i, j));
                     }
                 }
@@ -89,13 +98,14 @@ public class Main {
                     if(x >= 0 && x < n && y >= 0 && y < n){
                         if(size < arr[x][y]) // 물고기의 크기가 클 경우 무시
                             continue;
-                        if(size == arr[x][y] && distance[x][y] == 0){ // 물고기의 크기가 같을 경우 통과, 처음 방문할 경우 통과
+                        if(size >= arr[x][y] && distance[x][y] == 0){ // 물고기의 크기가 같을 경우 통과, 처음 방문할 경우 통과
                             distance[x][y] = distance[a][b] + 1;
+                            q.offer(new Node(x, y));
                         }
                     }
                 }
             }
-            int max = Integer.MAX_VALUE;
+            int min = Integer.MAX_VALUE;
             int ea = 999;
             int eb = 999;
             for(int i = 0; i < node_list.size(); i++) {
@@ -104,22 +114,31 @@ public class Main {
                 if (distance[a][b] == 0)
                     continue;
                 int length = distance[a][b];
-                if (max > length) {
+                if (min > length) {
                     ea = a;
                     eb = b;
-                    max = length;
-                } else if (max == length) {
-                    if (eb > b || ea < a) { // 위쪽에 있거나 왼쪽에 있을 때
+                    min = length;
+                } else if (min == length) {
+                    if (ea > a) { // 위쪽에 있을 때
                         ea = a;
+                        eb = b;
+                    }else if(ea == a && eb > b){ // 왼쪽에 있을 때
                         eb = b;
                     }
                 }
             }
-            if(max != 999){
+            if(ea != 999 && eb != 999){
+                arr[shark.getA()][shark.getB()] = 0; // 상어 위치 이동
+                arr[ea][eb] = 9; // 현재 상어위치
                 shark.setA(ea);
                 shark.setB(eb);
+                shark.eatShark();
+                int d  = shark.getDistance();
+                shark.setDistance(d + min);
+            }else{
+                break;
             }
-
         }
+        return shark.getDistance();
     }
 }

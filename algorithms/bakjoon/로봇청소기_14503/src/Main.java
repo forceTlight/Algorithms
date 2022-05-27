@@ -11,7 +11,6 @@ import java.util.StringTokenizer;
 class Cleaner {
     int a, b;
     int direct; // 바라보는 방향
-    int cnt = 0; // 회전한 횟수
 
     Cleaner(int a, int b, int direct) {
         this.a = a;
@@ -27,7 +26,6 @@ class Cleaner {
         this.direct--;
         if (direct < 0)
             direct = 3;
-        cnt++;
     }
 
     boolean checkFoward() {
@@ -35,38 +33,48 @@ class Cleaner {
         int tmp_b = b;
         switch (direct) {
             case 0:
-                tmp_a++;
+                tmp_a--;
+                break;
             case 1:
                 tmp_b++;
+                break;
             case 2:
-                tmp_a--;
+                tmp_a++;
+                break;
             case 3:
                 tmp_b--;
+                break;
         }
-        ;
-        if (tmp_a > 0 && tmp_a < Main.n && tmp_b < Main.m)
+        if (tmp_a < 0 || tmp_a >= Main.n || tmp_b < 0 || tmp_b >= Main.m)
             return false;
         if (Main.map[tmp_a][tmp_b] == 1)
+            return false;
+        if (Main.visit[tmp_a][tmp_b] == true)
             return false;
         a = tmp_a;
         b = tmp_b;
         return true;
     }
-    boolean checkBack(){
+
+    boolean checkBack() {
         int tmp_a = a;
         int tmp_b = b;
         switch (direct) {
             case 0:
-                tmp_a--;
+                tmp_a++;
+                break;
             case 1:
                 tmp_b--;
+                break;
             case 2:
-                tmp_a++;
+                tmp_a--;
+                break;
             case 3:
                 tmp_b++;
+                break;
         }
         ;
-        if (tmp_a > 0 && tmp_a < Main.n && tmp_b < Main.m)
+        if (tmp_a < 0 || tmp_a >= Main.n || tmp_b < 0 || tmp_b >= Main.m)
             return false;
         if (Main.map[tmp_a][tmp_b] == 1)
             return false;
@@ -74,6 +82,7 @@ class Cleaner {
         b = tmp_b;
         return true;
     }
+
     int getA() {
         return a;
     }
@@ -112,27 +121,45 @@ public class Main {
             }
         }
         bfs(cleaner);
+        int cnt = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (visit[i][j] == true)
+                    cnt++;
+            }
+        }
+        System.out.println(cnt);
     }
 
     public static void bfs(Cleaner cleaner) {
-        Queue<Cleaner> q = new LinkedList<>();
-        q.offer(cleaner);
-        while (!q.isEmpty()) {
+        loop:
+        while (true) {
             int a = cleaner.getA();
             int b = cleaner.getB();
-            int direct = cleaner.direct;
+            int direct;
             visit[a][b] = true;
-            for (int i = 0; i < 4; i++) {
-                cleaner.turn();
-                if (cleaner.checkFoward()) {
-                    a = cleaner.getA();
-                    b = cleaner.getB();
-                    if (visit[a][b] == false) {
+            for (int i = 0; i < 5; i++) {
+                if (i == 4) { // 갈 수 있는 곳이 없을 때 바라보고 있는 방향으로 뒤로 감
+                    if (cleaner.checkBack()) {
+                        int aa = cleaner.getA();
+                        int bb = cleaner.getB();
                         direct = cleaner.direct;
-                        q.offer(new Cleaner(a, b, direct));
+                        cleaner = new Cleaner(aa, bb, direct);
+                        continue loop;
+                    } else {
+                        break loop;
                     }
                 }
+                cleaner.turn();
+                if (cleaner.checkFoward()) {
+                    int aa = cleaner.getA();
+                    int bb = cleaner.getB();// 청소기가 바라보고 있는 방향으로 이동
+                    direct = cleaner.direct;
+                    cleaner = new Cleaner(aa, bb, direct);
+                    continue loop;
+                }
             }
+            break;
         }
     }
 }

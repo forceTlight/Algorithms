@@ -1,9 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.StringTokenizer;
+import java.util.ArrayList;
 
 class Gear {
     public int gear[];
@@ -56,7 +54,7 @@ class Gear {
 
 public class Main {
     static int gear[];
-    static LinkedList<Gear> gearList = new LinkedList<>();
+    static ArrayList<Gear> gearList = new ArrayList<>();
     public static void main(String args[]) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         for (int i = 0; i < 4; i++) {
@@ -82,14 +80,14 @@ public class Main {
     public static void rotate(int gn, int rotation) {
         gn = gn-1;
         for(int i = gn; i < 3; i++){ // 오른쪽
-            Gear gear = gearList.get(gn);
+            Gear gear = gearList.get(i);
             int num = gear.gear[2];
-            gearList.get(gn+1).checkMove("left", rotation, num);
+            gearList.get(i+1).checkMove("left", rotation, num);
         }
         for(int i = gn; i > 0; i--){ // 왼쪽
-            Gear gear = gearList.get(gn);
+            Gear gear = gearList.get(i);
             int num = gear.gear[6];
-            gearList.get(gn-1).checkMove("right", rotation, num);
+            gearList.get(i-1).checkMove("right", rotation, num);
         }
         if(rotation == -1){
             gearList.get(gn).counterClockwise();

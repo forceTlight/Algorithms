@@ -14,10 +14,10 @@ class Gear {
     }
     public void clockwise() {
         int[] gear_tmp = gear.clone();
-            for (int i = 1; i < 8; i++) {
-                gear[i] = gear_tmp[i-1];
-            }
-            gear[0] = gear_tmp[7];
+        for (int i = 1; i < 8; i++) {
+            gear[i] = gear_tmp[i-1];
+        }
+        gear[0] = gear_tmp[7];
     }
     // 반시계 방향
     public void counterClockwise() {

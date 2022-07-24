@@ -21,6 +21,6 @@ public class Main {
         // 이분 탐색
     }
     public static int binarySearch(int arr[], int target){
-        
+        d
     }
 }

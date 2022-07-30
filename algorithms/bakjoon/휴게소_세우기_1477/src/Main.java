@@ -1,14 +1,16 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.StringTokenizer;
 
 public class Main {
     static int n;
     static int m;
     static int l;
-    static int[] rest;
+    static ArrayList<Integer> rest;
     static int max = Integer.MIN_VALUE;
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -16,36 +18,34 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
         l = Integer.parseInt(st.nextToken());
-        rest = new int[n];
         st = new StringTokenizer(br.readLine(), " ");
+        rest = new ArrayList<>();
+        rest.add(0); // min
+        rest.add(l); // max
         for(int i = 0; st.hasMoreTokens(); i++){
-            rest[i] = Integer.parseInt(st.nextToken());
+            rest.add(Integer.parseInt(st.nextToken()));
         }
-        Arrays.sort(rest);
-        binarySearch(100, 1000);
-        System.out.println(max);
+        Collections.sort(rest);
+        binarySearch(1, l);
     }
     public static void binarySearch(int low, int high){
-        int mid;
+        int mid = 0;
         while(low <= high){
             mid = (low + high)/2;
             if(isPromising(mid)){
                 low = mid + 1;
-                max = Math.max(max, mid);
             }else{
                 high = mid - 1;
             }
         }
+        System.out.println(low);
     }
     public static boolean isPromising(int key){
         int cnt = 0;
-        int distance;
-        for(int i = 0; i < n-1; i++){
-            distance = (rest[i+1] - rest[i]) / 2;
-            if(distance <= key)
-                cnt++;
+        for(int i = 0; i < rest.size()-1; i++){
+            cnt += (rest.get(i+1) - rest.get(i) - 1) / key;
         }
-        if(cnt >= m)
+        if(cnt > m)
             return true;
         return false;
     }

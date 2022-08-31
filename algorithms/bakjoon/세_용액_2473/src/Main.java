@@ -28,7 +28,7 @@ public class Main {
     public static void binarySearch(int idx){
         int left = idx+1;
         int right = arr.length - 1;
-        while(left <= right){
+        while(left < right){
             long sum = arr[left] + arr[right] + arr[idx];
             long absSum = Math.abs(sum);
             if(absSum < min){

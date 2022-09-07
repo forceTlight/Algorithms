@@ -13,65 +13,64 @@ public class Main {
 
         map = new int[n];
         st = new StringTokenizer(br.readLine(), " ");
-        for(int i = 0; st.hasMoreTokens(); i++){
+        for (int i = 0; st.hasMoreTokens(); i++) {
             map[i] = Integer.parseInt(st.nextToken());
         }
 
         int stuNum = Integer.parseInt(br.readLine());
-        for(int i = 0; i < stuNum; i++){
+        for (int i = 0; i < stuNum; i++) {
             st = new StringTokenizer(br.readLine(), " ");
             int stuNumIput = Integer.parseInt(st.nextToken());
             int switchNum = Integer.parseInt(st.nextToken());
-            if(stuNumIput == 1){
+            if (stuNumIput == 1) {
                 manSwitch(switchNum);
-            }else if(stuNumIput == 2){
+            } else if (stuNumIput == 2) {
                 girlSwitch(switchNum);
             }
         }
-        for(int i = 0; i < n; i++){
-            if(i == n -1){
-                System.out.print(map[i] + ' ');
-            }else{
+        for (int i = 0; i < n; i++) {
+            if ((i + 1) % 20 == 0) {
                 System.out.print(map[i]);
+                System.out.println();
+            } else {
+                System.out.print(map[i]);
+                System.out.print(' ');
             }
         }
     }
 
-    public static void manSwitch(int num){
-        for(int i = 0; i < map.length; i++){
-            if(i+1 % num == 0) {
-                changeNum(num);
+    public static void manSwitch(int num) {
+        for (int i = 0; i < map.length; i++) {
+            if ((i + 1) % num == 0) {
+                changeNum(i);
             }
         }
     }
 
-    public static void girlSwitch(int num){
-        int left = num - 1;
-        int right = num + 1;
-        searchSwitch(left, right, num);
-    }
-
-    public static void searchSwitch(int left, int right, int num){
-        if(left < 0 || right >= map.length){
-            return;
-        }
-        if(map[left] == map[right]){
-            changeNum(left);
-            changeNum(right);
-            searchSwitch(left -1, right +1, num);
-        }else{
-            // 처음에 바로 끝났을 경우
-            if(left == num - 1 && right == num + 1){
-                changeNum(num);
+    public static void girlSwitch(int num) {
+        int idx = num - 1;
+        int left = idx;
+        int right = idx;
+        changeNum(idx);
+        for (int i = 0; i < map.length; i++) {
+            left--;
+            right++;
+            if (left < 0 || right >= map.length) {
+                return;
             }
-            return;
+            if (map[left] == map[right]) {
+                changeNum(left);
+                changeNum(right);
+            } else {
+                break;
+            }
         }
     }
 
-    public static void changeNum(int num){
-        if(map[num] == 1){
+    public static void changeNum(int num) {
+        if (map[num] == 1) {
             map[num] = 0;
-        }else{
+        } else {
             map[num] = 1;
         }
     }

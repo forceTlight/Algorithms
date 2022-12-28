@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class _6_중복_문자_제거 {
+public class _1_6_중복_문자_제거 {
     public static void main(String args[]) throws IOException {
         /**
          * 기존에 접근한 코드 (오답 코드)

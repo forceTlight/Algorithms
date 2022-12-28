@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class _10_가장_짧은_문자거리 {
+public class _1_10_가장_짧은_문자거리 {
     public static void main(String args[]) throws IOException {
         /**
          * 내가 작성한 코드

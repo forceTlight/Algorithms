@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class _7_회문_문자열 {
+public class _1_7_회문_문자열 {
     public static void main(String args[]) throws IOException {
         /**
          * 내가 작성한 코드

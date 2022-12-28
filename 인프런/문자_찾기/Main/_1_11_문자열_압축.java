@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class _11_문자열_압축 {
+public class _1_11_문자열_압축 {
     public static void main(String args[]) throws IOException {
         /**
          * 내가 작성한 코드

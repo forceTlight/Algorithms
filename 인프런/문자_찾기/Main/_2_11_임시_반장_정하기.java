@@ -17,29 +17,56 @@ public class _2_11_임시_반장_정하기 {
             }
         }
 
-        for(int i = 0; i < n; i++){
-            boolean visited[] = new boolean[n];
-            for(int j = 0; j < 5; j++){
-                for(int k = 0; k < n; k++){
-                    if(k == i)
-                        continue;
+        /**
+         * 내가 작성한 코드
+         */
+//        for(int i = 0; i < n; i++){
+//            boolean visited[] = new boolean[n];
+//            for(int j = 0; j < 5; j++){
+//                for(int k = 0; k < n; k++){
+//                    if(k == i)
+//                        continue;
+//
+//                    if(!visited[k] && arr[i][j] == arr[k][j]){
+//                        cnt[i]++;
+//                        visited[k] = true;
+//                    }
+//                }
+//            }
+//        }
+//
+//        int max = Integer.MIN_VALUE;
+//        int answer = 0;
+//        for(int i = 0; i < n; i++){
+//            if(max < cnt[i]){
+//                max = cnt[i];
+//                answer = i + 1;
+//            }
+//        }
+//        System.out.println(answer);
 
-                    if(!visited[k] && arr[i][j] == arr[k][j]){
-                        cnt[i]++;
-                        visited[k] = true;
-                    }
-                }
-            }
-        }
-
+        /**
+         * 강의에서 알려준 코드
+         */
         int max = Integer.MIN_VALUE;
         int answer = 0;
         for(int i = 0; i < n; i++){
-            if(max < cnt[i]){
-                max = cnt[i];
-                answer = i + 1;
+            int count = 0;
+            for(int j = 0; j < n; j++){
+                for(int k = 0; k < 5; k++){
+                    if(arr[i][k] == arr[j][k]){
+                        count++;
+                        break;
+                    }
+                }
+            }
+
+            if(max < count){
+                max = count;
+                answer = i;
             }
         }
-        System.out.println(answer);
+
+        System.out.println(answer + 1);
     }
 }

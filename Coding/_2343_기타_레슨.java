@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
+public class _2343_기타_레슨 {
     static int n;
     static int m;
     static int[] arr;

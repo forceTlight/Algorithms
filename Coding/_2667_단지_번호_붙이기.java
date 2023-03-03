@@ -1,14 +1,13 @@
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 import java.util.List;
 
-class Point {
+class Point1 {
     int x;
     int y;
-    Point(int y, int x){
+    Point1(int y, int x){
         this.y = y;
         this.x = x;
     }
@@ -51,17 +50,17 @@ public class _2667_단지_번호_붙이기 {
             }
         }
 
-        Queue<Point> queue = new LinkedList<>();
+        Queue<Point1> queue = new LinkedList<>();
 
         for(int i = 0; i < n; i++){
             for(int j = 0; j < n; j++){
                 if(arr[i][j] == 1 && !visited[i][j]){
-                    queue.add(new Point(i, j));
+                    queue.add(new Point1(i, j));
                     visited[i][j] = true;
                     int houseCount = 0;
 
                     while(!queue.isEmpty()){
-                        Point p = queue.poll();
+                        Point1 p = queue.poll();
                         int x = p.getX();
                         int y = p.getY();
 
@@ -69,7 +68,7 @@ public class _2667_단지_번호_붙이기 {
                             int a = y + dy[k];
                             int b = x + dx[k];
                             if(a >= 0 && a < n && b >= 0 && b < n && arr[a][b] == 1 && !visited[a][b]){
-                                queue.add(new Point(a, b));
+                                queue.add(new Point1(a, b));
                                 visited[a][b] = true;
                             }
                         }

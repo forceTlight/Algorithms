@@ -1,7 +1,11 @@
-import java.io.*;
-import java.util.*;
+package do_it;
 
-public class Main {
+import java.io.*;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+
+public class _10_최솟값_찾기 {
     static class Node {
         int value;
         int index;

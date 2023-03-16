@@ -1,4 +1,8 @@
-import java.io.*;
+package do_it;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -8,7 +12,7 @@ import java.util.Queue;
 // 1. 제일 위에 있는 카드 바닥에 버림
 // 2. 제일 위에 있는 카드를 제일 아래에 있는 카드 밑으로 옮김
 // 제일 마지막에 남게되는 카드를 구해라
-public class Main {
+public class _13_카드_2 {
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());

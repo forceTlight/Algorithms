@@ -1,4 +1,4 @@
-package 인프런;
+package 인프런.hashmap;
 
 import java.io.BufferedReader;
 import java.io.IOException;

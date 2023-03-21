@@ -3,7 +3,7 @@ package do_it;
 import java.io.*;
 import java.util.Arrays;
 
-public class _21_수_정렬하기_3 {
+public class _22_수_정렬하기_3 {
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));

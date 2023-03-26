@@ -1,4 +1,4 @@
-package 인프런.recursive;
+package 인프런.dfs;
 
 import java.io.*;
 

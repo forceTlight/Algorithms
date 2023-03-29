@@ -1,7 +1,12 @@
-import java.io.*;
-import java.util.*;
+package do_it;
 
-public class Main {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
+
+public class _34_회의실_배정 {
     static class Class implements Comparable<Class> {
         int prev;
         int next;

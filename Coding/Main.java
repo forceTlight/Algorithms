@@ -2,54 +2,46 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
+    static boolean flag = false;
+    static String answer = "NO";
+    static int total = 0;
     static boolean[] visited;
-    static ArrayList<Integer> list;
-    static int answer = 0;
+    static int[] arr;
+    static int n;
 
-    public static void main(String args[]){
-        int answer = solution(new String[][]{{"a", "A"}, {"b", "A"}, {"c", "B"}, {"d", "B"}, {"e", "C"}, {"f", "C"}});
+    public static void main(String args[]) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        n = Integer.parseInt(br.readLine());
+        arr = new int[n];
+        visited = new boolean[n];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for(int i = 0; i < n; i++){
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+
+        total = Arrays.stream(arr).sum();
+
+        for(int i = 1; i <= n; i++){
+            dfs(0, 0);
+        }
+
         System.out.println(answer);
     }
-    public static int solution(String[][] clothes) {
-        HashMap<String, Integer> hashMap = new HashMap<>();
-        for(int i = 0; i < clothes.length; i++){
-            String key = clothes[i][1];
 
-            hashMap.put(key, hashMap.getOrDefault(key, 0) + 1);
-        }
+    public static void dfs(int idx, int sum) {
+        if(flag)
+            return;
 
-        list = new ArrayList<>();
-        for(String key : hashMap.keySet()){
-            list.add(hashMap.get(key));
-        }
-
-        // process
-        for(int i = 1; i <= list.size(); i++){
-            visited = new boolean[hashMap.size()];
-            dfs(0, 0, i);
-        }
-
-        return answer;
-    }
-
-    public static void dfs(int depth, int idx, int max){
-        if(depth == max){
-            int tmp = 1;
-            for(int i = 0; i < visited.length; i++){
-                if(visited[i]){
-                    tmp *= list.get(i);
-                }
+        if(idx == n){
+            if(total - sum == sum){
+                flag = true;
+                answer = "YES";
             }
-            answer += tmp;
             return;
         }
 
-        for(int i = idx; i < list.size(); i++){
-            if(!visited[i]){
-                visited[i] = true;
-                dfs(depth+1, i, max);
-                visited[i] = false;
-            }
-        }
+        dfs(idx+1, sum + arr[idx]);
+        dfs(idx+1, sum);
     }
 }

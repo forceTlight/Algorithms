@@ -1,7 +1,9 @@
-import java.util.*;
-import java.io.*;
+package 프로그래머스;
 
-public class Main {
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class 위장 {
     static boolean[] visited;
     static ArrayList<Integer> list;
     static int answer = 0;

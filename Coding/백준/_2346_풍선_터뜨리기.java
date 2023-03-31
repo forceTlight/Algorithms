@@ -1,12 +1,12 @@
+package 백준;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main{
+public class _2346_풍선_터뜨리기 {
     static int[] answer;
     static class Node{
         int data;

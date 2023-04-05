@@ -1,8 +1,13 @@
-import java.util.*;
-import java.io.*;
+package 백준;
 
-public class Main {
-    static class Box {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
+public class _1905_상자_쌓기 {
+    static class Box implements Comparable<Box> {
         int x1;
         int x2;
         int y1;
@@ -38,6 +43,11 @@ public class Main {
 
         public void setHeight(long height) {
             this.height = height;
+        }
+
+        @Override
+        public int compareTo(Box box) {
+            return box.height > this.height ? 1 : -1;
         }
     }
 

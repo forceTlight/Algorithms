@@ -1,7 +1,6 @@
-import java.util.*;
-import java.io.*;
+package 프로그래머스;
 
-class Main {
+class 광물_캐기 {
     static boolean[] visited;
     static int[] picks;
     static String[] minerals;

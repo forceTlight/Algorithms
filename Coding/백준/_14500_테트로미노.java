@@ -1,7 +1,11 @@
-import java.util.*;
-import java.io.*;
+package 백준;
 
-public class Main{
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class _14500_테트로미노 {
     static int dx[] = {-1, 1, 0, 0};
     static int dy[] = {0, 0, -1, 1};
     static int n;

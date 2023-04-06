@@ -1,5 +1,9 @@
+package 백준;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
-import java.io.*;
 
 // 추천 시작하기 전에는 모든 사진틀 비어있음
 // 특정 학생을 추천하면, 추천받은 학생의 사진이 반드시 사진틀에 게시되어야 함
@@ -9,7 +13,7 @@ import java.io.*;
 // 사진틀에 게시된 사진이 삭제된 경우는 해당 학생이 추천받은 횟수는 0으로 바뀐다
 
 // 사진틀에 사진이 게재된 최종 후보의 학생 번호를 증가하는 순서대로 출력한다
-public class Main{
+public class _1713_후보_추천하기 {
     static class Student implements Comparable<Student>{
         int idx;
         int number;

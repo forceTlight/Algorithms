@@ -1,59 +1,14 @@
+// 디펜스 게임은 준호가 보유한 병사 n명으로 연속되는 적의 공격을 순서대로 막는 게임
+// 남은 병사중 적 숫자만큼의 병사를 소모해 적을 막을 수 있다. ex) 남은 병사 7, 적 2 -> 7 - 2 = 5명의 병사 남음
+// 남은 병사의 수보다 현재 라운드의 적의 수가 더 많으면 게임이 종료
+// 무적권(k개)를 쓰면 병사의 소모없이 한 라운드의 공격을 막을 수 있음
+// 최대 몇 라운드까지 막을 수 있는지 return
+import java.util.*;
+
 class Main {
     public static void main(String args[]){
-        String answer = solution("ABC",new String[]{"12:00,12:14,HELLO,C#DEFGAB", "13:00,13:05,WORLD,ABCDEF"});
+        Solution solution = new Solution();
+        int answer = solution.solution(new int[]{1,4,5});
         System.out.println(answer);
-    }
-
-    public static String solution(String m, String[] musicinfos) {
-        String answer = "";
-
-        m = m.replaceAll("C#", "c").replaceAll("D#", "d").replaceAll("F#", "f")
-                .replaceAll("G#", "g").replaceAll("A#", "a");
-
-        for(int i = 0; i < musicinfos.length; i++){
-            String[] music = musicinfos[i].split(",");
-            String startTime = music[0];
-            String endTime = music[1];
-            String title = music[2];
-            String song = music[3];
-
-            // replace
-            song = song.replaceAll("C#", "c").replaceAll("D#", "d").replaceAll("F#", "f")
-                    .replaceAll("G#", "g").replaceAll("A#", "a");
-
-            int diff = getDiffMinute(startTime, endTime);
-            StringBuilder sb = new StringBuilder();
-            int cnt = 0;
-            int pt = 0;
-            while(cnt < diff){
-                if(pt == song.length())
-                    pt = 0;
-
-                sb.append(song.charAt(pt));
-
-                pt++;
-                cnt++;
-            }
-
-            if(sb.toString().contains(m)){
-                if(answer.length() < title.length()){
-                    answer = title;
-                }
-            }
-        }
-        if(answer == "")
-            answer = "(None)";
-
-        return answer;
-    }
-
-    public static int getDiffMinute(String startTime, String endTime){
-        String[] startTimes = startTime.split(":");
-        String[] endTimes = endTime.split(":");
-
-        int st = Integer.parseInt(startTimes[0]) * 60 + Integer.parseInt(startTimes[1]);
-        int ed = Integer.parseInt(endTimes[0]) * 60 + Integer.parseInt(endTimes[1]);
-
-        return ed - st;
     }
 }

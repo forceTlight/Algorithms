@@ -1,7 +1,9 @@
+package 프로그래머스;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-class Solution {
+class 카카오_압축 {
     HashMap<String, Integer> dictionary = new HashMap<>();
 
     public int[] solution(String msg) {

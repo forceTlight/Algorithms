@@ -1,10 +1,12 @@
+package 백준;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedHashSet;
 import java.util.StringTokenizer;
 
-public class Main {
+public class _9466_텀_프로젝트 {
     static int m;
     static LinkedHashSet<Integer> hashSet; // 사이클 탐지용 해시 셋
     static int[] arr;

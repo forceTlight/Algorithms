@@ -63,8 +63,6 @@ public class _14502_연구소 {
             }
         }
 
-        wv = new boolean[wallList.size()];
-
         dfs(0, 0);
 
         System.out.println(ans);

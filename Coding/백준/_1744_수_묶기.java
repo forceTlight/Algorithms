@@ -11,8 +11,8 @@ public class _1744_수_묶기 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
 
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder()); // 7 5 4 1 => 35 + 4
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>(); // -9 -5 -3 0 => 45 + 0
 
         for(int i = 0; i < n; i++){
             int num = Integer.parseInt(br.readLine());

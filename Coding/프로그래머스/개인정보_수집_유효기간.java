@@ -1,7 +1,10 @@
-import java.util.*;
+package 프로그래머스;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 // 파기해야 할 개인정보 구하면 됨
-class Solution {
+class 개인정보_수집_유효기간 {
     public int[] solution(String today, String[] terms, String[] privacies) {
         ArrayList<Integer> answerList = new ArrayList<>();
 

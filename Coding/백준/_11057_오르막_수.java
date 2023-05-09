@@ -1,8 +1,10 @@
-    import java.io.BufferedReader;
-    import java.io.IOException;
-    import java.io.InputStreamReader;
+package 백준;
 
-    public class Main{
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+    public class _11057_오르막_수 {
         public static void main(String args[]) throws IOException {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             int n = Integer.parseInt(br.readLine());

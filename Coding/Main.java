@@ -1,39 +1,32 @@
-    import java.io.BufferedReader;
-    import java.io.IOException;
-    import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.PriorityQueue;
+import java.util.StringTokenizer;
 
-    public class Main{
-        public static void main(String args[]) throws IOException {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            int n = Integer.parseInt(br.readLine());
+public class Main{
+    public static void main(String args[]) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
 
-            int[][] dp = new int[n+1][10];
+        for(int i = 0; i < t; i++){
+            int k = Integer.parseInt(br.readLine());
+            StringTokenizer st = new StringTokenizer(br.readLine());
 
-            for(int i = 0; i <= 9; i++){
-                dp[1][i] = 1;
+            PriorityQueue<Long> pq = new PriorityQueue<>();
+            for(int j = 0; j < k; j++)
+                pq.offer(Long.parseLong(st.nextToken()));
+
+            long sum = 0;
+            while(pq.size() > 1){
+                long a = pq.poll();
+                long b = pq.poll();
+
+                sum += (a+b);
+                pq.offer(a+b);
             }
 
-            for(int i = 2; i <= n; i++){
-                int sum = 0;
-                for(int j = 0; j <= 9; j++){
-                    sum += dp[i-1][j] % 10007;
-                }
-
-                dp[i][0] = sum;
-
-                int tmp = 0;
-                for(int j = 1; j <= 9; j++){
-                    tmp += dp[i-1][j-1] % 10007;
-                    dp[i][j] = sum - tmp;
-                }
-            }
-
-            int answer = 0;
-
-            for(int i = 0; i <= 9; i++){
-                answer += dp[n][i] % 10007;
-            }
-
-            System.out.println(answer % 10007);
+            System.out.println(sum);
         }
     }
+}

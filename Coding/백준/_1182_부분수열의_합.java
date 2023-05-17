@@ -1,9 +1,11 @@
+package 백준;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main {
+public class _1182_부분수열의_합 {
     static int[] arr;
     static int n;
     static int s;

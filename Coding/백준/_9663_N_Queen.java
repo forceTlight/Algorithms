@@ -60,18 +60,6 @@ public class _9663_N_Queen {
             }
         }
 
-        for(int i = 0; i < a; i++){
-            for(int j = 0; j < n; j++){
-                if(j == b){ // y축에 퀸
-                    if(board[i][j] == 1)
-                        return false;
-                }else if(Math.abs(i - a) == Math.abs(j - b)){ // 대각선일 떄
-                    if(board[i][j] == 1)
-                        return false;
-                }
-            }
-        }
-
         return true;
     }
 }

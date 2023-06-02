@@ -75,6 +75,7 @@ public class _14221_편의점 {
 
         for (int i = 0; i < store_num; i++) {
             int store = stores[i];
+
             dikstra(store);
 
             // 최소 거리 비교

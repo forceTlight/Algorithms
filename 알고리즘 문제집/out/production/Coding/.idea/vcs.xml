@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/옛날문제/bakjoon/Server" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/옛날문제/bakjoon/junction-template" vcs="Git" />
   </component>
 </project>

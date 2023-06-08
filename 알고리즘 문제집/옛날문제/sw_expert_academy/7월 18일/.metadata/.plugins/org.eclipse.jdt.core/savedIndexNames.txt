@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+D:\코딩\SW expert academy\7월 18일\.metadata\.plugins\org.eclipse.jdt.core
-3458694319.index
-2112246634.index

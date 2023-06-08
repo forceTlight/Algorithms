@@ -1,3 +1,0 @@
-INDEX VERSION 1.131+C:\코딩\프로그래머스\6월11일\.metadata\.plugins\org.eclipse.jdt.core
-1718204145.index
-2112246634.index

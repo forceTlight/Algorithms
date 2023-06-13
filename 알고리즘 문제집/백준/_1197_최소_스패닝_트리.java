@@ -1,11 +1,12 @@
+package 백준;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-public class Main{
+public class _1197_최소_스패닝_트리 {
     static class Edge implements Comparable<Edge>{
         int v1;
         int v2;

@@ -1,10 +1,14 @@
-import javax.sound.sampled.Line;
+package 백준;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class Main {
+public class _2667_단지번호_붙이기 {
     static class Node {
         int a;
         int b;

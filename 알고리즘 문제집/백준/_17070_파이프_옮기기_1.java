@@ -1,3 +1,5 @@
+package 백준;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,7 +11,7 @@ import java.util.StringTokenizer;
  * [백준] - 파이프 옮기기 1
  *  알고리즘 유형 : BFS
  */
-public class Main {
+public class _17070_파이프_옮기기_1 {
     static class Node {
         int a;
         int b;

@@ -1,3 +1,5 @@
+package 백준;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,7 +12,7 @@ import java.util.StringTokenizer;
  * 난이도 : Silver 3
  * 풀이시간 : 5분
  */
-public class Main{
+public class _2606_바이러스 {
     static ArrayList<Integer>[] adj;
     static boolean[] visited;
     static int answer = 0;

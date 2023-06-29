@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 public class 다익스트라_알고리즘 {
     static class Edge implements Comparable<Edge> {
         int node;
-        int distance;
+            int distance;
 
         public Edge(int node, int distance) {
             this.node = node;

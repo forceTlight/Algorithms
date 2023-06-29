@@ -1,3 +1,5 @@
+package 백준;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,7 +15,7 @@ import java.util.StringTokenizer;
  * 풀이시간 : 20분
  * 주의사항 : BFS는 가중치가 다른 간선의 최솟값을 구하지 못한다. (모든 가중치가 동일해야 함), 만약 가중치가 다른경우 다익스트라로 풀어야한다.
  */
-public class Main{
+public class _13549_숨바꼭질3_다익스트라 {
     static class Edge implements Comparable<Edge>{
         int node;
         int time;

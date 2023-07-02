@@ -1,3 +1,5 @@
+package 백준;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,7 +10,7 @@ import java.io.InputStreamReader;
  * 난이도 : Silver 1
  * 풀이시간 : 3시간 (답지 참고)
  */
-public class Main{
+public class _15989_1_2_3_더하기_4 {
     public static void main(String args[]) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(br.readLine());

@@ -1,10 +1,17 @@
+package 백준;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
+/**
+ * 12865 - 평범한 배낭Z
+ * 문제유형 : DP
+ * 난이도 : GOLD 5
+ * 풀이시간 : 2시간
+ */
+public class _12865_평범한_배낭 {
     static int n;
     static int k;
     static Integer[][] dp;

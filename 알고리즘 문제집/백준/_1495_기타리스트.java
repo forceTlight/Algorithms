@@ -1,3 +1,5 @@
+package 백준;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,7 +12,7 @@ import java.util.StringTokenizer;
  * 난이도 : Silver 1
  * 풀이시간 : 2시간
  */
-public class Main{
+public class _1495_기타리스트 {
     static int n;
     static int s;
     static int m;
@@ -36,7 +38,8 @@ public class Main{
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        System.out.println(dfs(s, 0));
+        int answer = dfs(s, 0);
+        System.out.println(answer);
     }
 
     public static int dfs(int sum, int idx){

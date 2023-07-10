@@ -1,3 +1,5 @@
+package 백준;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,7 +12,7 @@ import java.util.StringTokenizer;
  * 난이도 : GOLD 5
  * 풀이시간 : 2시간
  */
-public class Main {
+public class _5557_1학년 {
     static int n;
     static int[] arr;
     static long[][] dp;

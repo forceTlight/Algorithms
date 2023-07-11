@@ -1,7 +1,8 @@
+package 백준;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.Buffer;
 
 /**
  * 1913 - 달팽이
@@ -9,7 +10,7 @@ import java.nio.Buffer;
  * 난이도 : SILVER 3
  * 풀이시간 : 2시간
  */
-public class Main{
+public class _1913_달팽이 {
     static int n;
     static int[][] answer;
     public static void main(String args[]) throws IOException {

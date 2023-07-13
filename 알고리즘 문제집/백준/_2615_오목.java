@@ -1,4 +1,8 @@
-import java.io.*;
+package 백준;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -9,7 +13,7 @@ import java.util.StringTokenizer;
  * 난이도 : SILVER 1
  * 풀이시간 : 1시간
  */
-public class Main {
+public class _2615_오목 {
     static class Node {
         int a;
         int b;

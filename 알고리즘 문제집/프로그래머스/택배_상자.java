@@ -1,6 +1,8 @@
+package 프로그래머스;
+
 import java.util.Stack;
 
-class Solution {
+class 택배_상자 {
     public static void main(String args[]){
         System.out.println(solution(new int[]{3, 5, 4, 2, 1}));
     }

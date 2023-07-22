@@ -1,35 +1,57 @@
-import java.util.Stack;
+import java.util.*;
 
 class Solution {
-    public static void main(String args[]){
-        System.out.println(solution(new int[]{3, 5, 4, 2, 1}));
+    public static void main(String args[]) {
+        System.out.println(solution(new int[]{1, 2, 3, 1, 4}));
     }
-    public static int solution(int[] order) {
+
+    public static int solution(int[] topping) {
         int answer = 0;
 
-        // 보조 컨테이너
-        Stack<Integer> stack = new Stack<>();
+        HashMap<Integer, Integer> aMap = new HashMap<>();
+        HashMap<Integer, Integer> bMap = new HashMap<>();
+        HashMap<Integer, Integer> tmpAMap = new HashMap<>();
+        HashMap<Integer, Integer> tmpBMap = new HashMap<>();
+        // 반으로 나누기
+        int len = topping.length / 2;
 
-        int num = 1;
+        // A 토핑 할당
+        for (int i = 0; i < len; i++) {
+            int t = topping[i];
+            aMap.put(t, aMap.getOrDefault(t, 0) + 1);
+            tmpAMap.put(t, tmpAMap.getOrDefault(t, 0) + 1);
+        }
 
-        for(int i = 0; i < order.length; i++){
-            int currentOrder = order[i];
+        // B 토핑 할당
+        for (int i = len; i < topping.length; i++) {
+            int t = topping[i];
+            bMap.put(t, bMap.getOrDefault(t, 0) + 1);
+            tmpBMap.put(t, tmpBMap.getOrDefault(t, 0) + 1);
+        }
 
-            while(currentOrder > num){
-                stack.push(num++);
-            }
+        if(aMap.keySet().size() == bMap.keySet().size())
+            answer++;
 
-            if(currentOrder == num) {
+        for (int i = len - 1; i >= 0; i--) {
+            int t = topping[i];
+            aMap.put(t, aMap.get(t) - 1);
+            bMap.put(t, bMap.getOrDefault(t, 0) + 1);
+            if (aMap.get(t) == 0)
+                aMap.remove(t);
+
+            if (aMap.keySet().size() == bMap.keySet().size())
                 answer++;
-                num++;
-            } else {
-                if(stack.isEmpty() || stack.peek() != currentOrder)
-                    return answer;
-                else { // 스택에서 꺼내야 할 때
-                    stack.pop();
-                    answer++;
-                }
-            }
+        }
+
+        for (int i = len; i < topping.length; i++) {
+            int t = topping[i];
+            tmpBMap.put(t, tmpBMap.get(t) - 1);
+            tmpAMap.put(t, tmpAMap.getOrDefault(t, 0) + 1);
+            if (tmpBMap.get(t) == 0)
+                tmpBMap.remove(t);
+
+            if (tmpAMap.keySet().size() == tmpBMap.keySet().size())
+                answer++;
         }
 
         return answer;

@@ -1,0 +1,72 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Solution {
+	public static void main(String args[]) throws NumberFormatException, IOException {
+		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+		int Case = Integer.parseInt(bf.readLine());
+		int cnt = 0;
+		while (cnt < Case) {
+			cnt++;
+			// 조건 받기
+			StringTokenizer st = new StringTokenizer(bf.readLine());
+			int num = Integer.parseInt(st.nextToken());
+			int time = Integer.parseInt(st.nextToken());
+			int bread = Integer.parseInt(st.nextToken());
+			// 사람 시간받기
+			st = new StringTokenizer(bf.readLine());
+			int people[] = new int[num];
+			for (int i = 0; i < num; i++) {
+				people[i] = Integer.parseInt(st.nextToken());
+			}
+			int b_num = 0;
+			// process
+			// max 값 찾기
+			int max = 0;
+			for (int i = 0; i < num; i++) {
+				if (people[i] >= max)
+					max = people[i];
+				if(people[i] == 0) {
+					System.out.println("#" + cnt + " Impossible");
+					break;
+				}
+			}
+			// 무한 루프, 1초씩 게산
+			int count = 0;
+			loop: while (count < max) {
+				// 빵 만들기
+				count++;
+				if(count % time == 0)
+					b_num += bread;
+				// 시간 빼기
+				for (int i = 0; i < people.length; i++) {
+					if (people[i] == 0) // 이미 지나간 사람은 계산 제외
+						continue;
+					if (people[i] == 1) { // 미리도착 했거나 제시간에 도착
+						people[i] -= 1;
+						b_num--;
+					} else { // 여유시간 있는 사람
+						people[i] -= 1;
+					}
+				}
+				int min_max = 0;
+				// 오류 검사
+				for (int i = 0; i < people.length; i++) {
+					// 빵이 부족한 경우
+					if (b_num < 0) {
+						System.out.println("#" + cnt + " Impossible");
+						break loop;
+					}
+					if (people[i] >= min_max)
+						min_max = people[i];
+				}
+				if (min_max <= 0) {
+					System.out.println("#" + cnt + " Possible");
+					break loop;
+				}
+			}
+		}
+	}
+}

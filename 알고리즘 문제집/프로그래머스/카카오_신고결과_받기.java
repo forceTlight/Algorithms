@@ -1,4 +1,5 @@
-package 프로그래머스;// output: 각 유저가 받은 결과 메일 수
+package 프로그래머스;
+// output: 각 유저가 받은 결과 메일 수
 // output-size: id_list size (2 <= id_list <= 1000)
 
 // input: 유저 id list, report - 이용자id, 신고한id 문자열, k - 정지기준이 되는 신고 갯수
